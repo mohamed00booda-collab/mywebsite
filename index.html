@@ -10,7 +10,12 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        html {
             scroll-behavior: smooth;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
         }
         body {
             background-color: #0f0f0f;
@@ -25,6 +30,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
             padding: 20px 80px;
             z-index: 1000;
             border-bottom: 1px solid #222;
@@ -36,6 +43,7 @@
         }
         nav ul {
             display: flex;
+            flex-wrap: wrap;
             list-style: none;
             gap: 30px;
         }
@@ -45,20 +53,34 @@
             font-size: 1rem;
             transition: 0.3s;
         }
-        nav ul li a:hover {
+        nav ul li a:hover,
+        nav ul li a.active {
             color: #ffcc00;
         }
-        /* Sections General */
-        section {
+        #lang {
+            background-color: #1a1a1a;
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        #lang:focus {
+            outline: none;
+            border-color: #ffcc00;
+        }
+        /* Sections: all on one page, nav buttons scroll to them */
+        .page {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 100px 20px;
+            padding: 120px 20px 60px;
             text-align: center;
         }
-        /* Home Section */
+        /* Home */
         .home-content {
             display: flex;
             align-items: center;
@@ -68,7 +90,7 @@
             max-width: 1000px;
         }
         .text-side {
-            text-align: right;
+            text-align: start;
             max-width: 500px;
         }
         .text-side h3 {
@@ -97,6 +119,7 @@
         }
         .btn-box {
             display: flex;
+            flex-wrap: wrap;
             gap: 15px;
         }
         .btn {
@@ -120,7 +143,7 @@
             background-color: #ffcc00;
             color: #000;
         }
-        /* Grid Cards Sections (Skills & Projects) */
+        /* Cards (Skills, Projects, Tools) */
         .section-title {
             font-size: 2.5rem;
             color: #ffcc00;
@@ -139,7 +162,7 @@
             border-radius: 15px;
             padding: 30px;
             width: 320px;
-            text-align: right;
+            text-align: start;
             transition: 0.3s;
         }
         .card:hover {
@@ -156,19 +179,129 @@
             font-size: 0.95rem;
             line-height: 1.5;
         }
-        /* Contact Section */
+        #likeBtn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+        /* Calculators */
+        .tool-wrap {
+            width: 100%;
+            max-width: 400px;
+        }
+        .calc-box {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            text-align: start;
+            transition: 0.3s;
+        }
+        .calc-box:hover {
+            border-color: #ffcc00;
+        }
+        .calc-box label {
+            display: block;
+            color: #b3b3b3;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+        .calc-box input,
+        .calc-box select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background-color: #0f0f0f;
+            color: #fff;
+            font-size: 1rem;
+        }
+        .calc-box input:focus,
+        .calc-box select:focus {
+            outline: none;
+            border-color: #ffcc00;
+        }
+        .calc-box button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 30px;
+            background-color: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .calc-box button:hover {
+            background-color: #e6b800;
+        }
+        .result {
+            margin-top: 20px;
+            line-height: 2;
+            color: #b3b3b3;
+        }
+        .result b {
+            color: #fff;
+        }
+        .result .ok {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        .calc-note {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #808080;
+            line-height: 1.6;
+        }
+        /* Contact + Like */
+        .like-box {
+            margin-bottom: 30px;
+        }
+        .like-box p {
+            color: #b3b3b3;
+            margin-bottom: 15px;
+        }
+        #likeBtn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 30px;
+            border: 2px solid #ffcc00;
+            background-color: transparent;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #likeBtn:hover {
+            background-color: #ffcc00;
+            color: #000;
+        }
+        #likeBtn.liked {
+            background-color: #ffcc00;
+            color: #000;
+            cursor: default;
+        }
         .social-icons {
             display: flex;
-            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
             margin-top: 25px;
         }
         .social-icons a {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             background-color: #1a1a1a;
             color: #ffcc00;
             border: 1px solid #ffcc00;
-            padding: 12px 20px;
-            border-radius: 50%;
+            padding: 12px 24px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
@@ -177,6 +310,41 @@
             background-color: #ffcc00;
             color: #000;
         }
+        .social-icons a svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+        .social-icons a.wa svg { color: #25D366; }
+        .social-icons a.fb svg { color: #1877F2; }
+        .social-icons a.ig svg { color: #E4405F; }
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 12px 20px;
+            }
+            nav ul {
+                gap: 14px;
+                order: 3;
+                width: 100%;
+            }
+            nav ul li a {
+                font-size: 0.9rem;
+            }
+            nav .logo {
+                font-size: 1.1rem;
+            }
+            .page {
+                padding-top: 140px;
+            }
+            .text-side h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -184,83 +352,439 @@
     <!-- النافبار العلوي -->
     <nav>
         <div class="logo">Eng. Mohamed</div>
+        <select id="lang" aria-label="Language">
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+        </select>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contacts</a></li>
+            <li><a href="#home" data-i18n="nav_home">Home</a></li>
+            <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+            <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+            <li><a href="#tax" data-i18n="nav_tax">Tax</a></li>
+            <li><a href="#zakat" data-i18n="nav_zakat">Zakat</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- قسم الرئيسية (Home) -->
-    <section id="home">
+    <!-- الرئيسية (Home) -->
+    <section id="home" class="page">
         <div class="home-content">
             <div class="text-side">
-                <h3>WELCOME TO MY PORTFOLIO</h3>
-                <h1>Hello, I am Mohamed</h1>
-                <p>محاسب ومطور برمجيات، أجمع بين الدقة المالية والإبداع البرمجي في بناء الأنظمة والمواقع الاحترافية.</p>
+                <h3 data-i18n="hero_welcome">WELCOME TO MY PORTFOLIO</h3>
+                <h1 data-i18n="hero_hello">Hello, I am Mohamed</h1>
+                <p data-i18n="hero_desc"></p>
                 <div class="btn-box">
-                    <a href="#projects" class="btn">My Projects</a>
-                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                    <a href="#projects" class="btn" data-i18n="btn_projects">My Projects</a>
+                    <a href="#tax" class="btn btn-outline" data-i18n="btn_tools">Free Tools</a>
+                    <a href="#contact" class="btn btn-outline" data-i18n="btn_contact">Contact Me</a>
                 </div>
             </div>
-            <div
-
-                <!-- حط اسم صورتك الشخصية هنا -->
+            <div class="image-side">
                 <img src="my-photo.png.jpg" alt="Mohamed Abdo" class="profile-img">
-        
             </div>
         </div>
     </section>
 
-    <!-- قسم المهارات (Skills) -->
-    <section id="skills">
-        <h2 class="section-title">My Skills</h2>
+    <!-- المهارات (Skills) -->
+    <section id="skills" class="page">
+        <h2 class="section-title" data-i18n="skills_title">My Skills</h2>
         <div class="cards-container">
             <div class="card">
-                <h3>Web Development</h3>
-                <p>تطوير وبناء مواقع ويب عصرية ومتجاوبة بتصميمات نظيفة وواجهات احترافية.</p>
+                <h3 data-i18n="s1_t">Web Development</h3>
+                <p data-i18n="s1_d"></p>
             </div>
             <div class="card">
-                <h3>C & Logic Programming</h3>
-                <p>خبرة في كتابة الأكواد والمنطق البرمجي السليم وحل المشكلات المعقدة بلغة C.</p>
+                <h3 data-i18n="s2_t">C & Logic Programming</h3>
+                <p data-i18n="s2_d"></p>
             </div>
             <div class="card">
-                <h3>Financial Systems</h3>
-                <p>تحليل وتصميم النظم المحاسبية والمالية بدقة عالية تماشياً مع معايير المحاسبة.</p>
+                <h3 data-i18n="s3_t">Financial Systems</h3>
+                <p data-i18n="s3_d"></p>
             </div>
         </div>
     </section>
 
-    <!-- قسم المشاريع (Projects) -->
-    <section id="projects">
-        <h2 class="section-title">My Projects</h2>
+    <!-- المشاريع (Projects) -->
+    <section id="projects" class="page">
+        <h2 class="section-title" data-i18n="projects_title">My Projects</h2>
         <div class="cards-container">
             <div class="card">
                 <h3>PROJECT #01</h3>
-                <p>نظام محاسبي إلكتروني لإدارة الحسابات والمبيعات والمشتريات بدقة وسهولة تامة.</p>
+                <p data-i18n="p1_d"></p>
             </div>
             <div class="card">
                 <h3>PROJECT #02</h3>
-                <p>تطبيق ويب تفاعلي لعرض البيانات والتحليلات الإحصائية للمستخدمين.</p>
+                <p data-i18n="p2_d"></p>
             </div>
             <div class="card">
                 <h3>PROJECT #03</h3>
-                <p>موقع شخصي احترافي (Portfolio) بتصميم داكن وإضاءة صفراء جذابة لعرض الأعمال.</p>
+                <p data-i18n="p3_d"></p>
             </div>
         </div>
     </section>
 
-    <!-- قسم التواصل (Contacts) -->
-    <section id="contact">
-        <h2 class="section-title">Contact Me</h2>
-        <p style="color: #b3b3b3; margin-bottom: 20px;">يسعدني تواصلك معي لأي استفسار أو عمل مشترك!</p>
-        <div class="social-icons">
-            <a href="https://linkedin.com" target="_blank">In</a>
-            <a href="https://github.com" target="_blank">Gh</a>
-            <a href="https://wa.me/201093453466" target="_blank">Wa</a>
+    <!-- حاسبة الضريبة (Tax) -->
+    <section id="tax" class="page">
+        <div class="tool-wrap">
+            <h2 class="section-title" data-i18n="tax_title"></h2>
+            <div class="calc-box">
+                <label for="amount" data-i18n="tax_amount"></label>
+                <input id="amount" type="number" inputmode="decimal" min="0" step="any" data-i18n-ph="tax_amount_ph">
+
+                <label for="rate" data-i18n="tax_rate"></label>
+                <input id="rate" type="number" inputmode="decimal" min="0" step="any" data-i18n-ph="tax_rate_ph">
+
+                <label for="mode" data-i18n="tax_mode"></label>
+                <select id="mode">
+                    <option value="add" data-i18n="tax_mode_add"></option>
+                    <option value="extract" data-i18n="tax_mode_extract"></option>
+                </select>
+
+                <button type="button" id="calcBtn" data-i18n="tax_btn"></button>
+                <div id="result" class="result" aria-live="polite"></div>
+            </div>
         </div>
     </section>
+
+    <!-- حاسبة الزكاة (Zakat) -->
+    <section id="zakat" class="page">
+        <div class="tool-wrap">
+            <h2 class="section-title" data-i18n="zakat_title"></h2>
+            <div class="calc-box">
+                <label for="goldPrice" data-i18n="z_gold"></label>
+                <input id="goldPrice" type="number" inputmode="decimal" min="0" step="any" placeholder="4000">
+
+                <label for="zCash" data-i18n="z_cash"></label>
+                <input id="zCash" type="number" inputmode="decimal" min="0" step="any" placeholder="0">
+
+                <label for="zGold" data-i18n="z_goldsave"></label>
+                <input id="zGold" type="number" inputmode="decimal" min="0" step="any" placeholder="0">
+
+                <label for="zTrade" data-i18n="z_trade"></label>
+                <input id="zTrade" type="number" inputmode="decimal" min="0" step="any" placeholder="0">
+
+                <label for="zOwedToMe" data-i18n="z_owedtome"></label>
+                <input id="zOwedToMe" type="number" inputmode="decimal" min="0" step="any" placeholder="0">
+
+                <label for="zOwedByMe" data-i18n="z_owedbyme"></label>
+                <input id="zOwedByMe" type="number" inputmode="decimal" min="0" step="any" placeholder="0">
+
+                <button type="button" id="zakatBtn" data-i18n="z_btn"></button>
+                <div id="zakatResult" class="result" aria-live="polite"></div>
+                <p class="calc-note" data-i18n="z_note"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- التواصل (Contact) -->
+    <section id="contact" class="page">
+        <h2 class="section-title" data-i18n="contact_title">Contact Me</h2>
+        <p style="color: #b3b3b3; margin-bottom: 30px;" data-i18n="contact_desc"></p>
+        <div class="like-box">
+            <p data-i18n="like_prompt"></p>
+            <button type="button" id="likeBtn">
+                <span id="likeHeart">♡</span>
+                <span id="likeCount">...</span>
+            </button>
+        </div>
+        <div class="social-icons">
+            <a class="wa" href="https://wa.me/201093453466" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span>WhatsApp</span>
+            </a>
+            <a class="fb" href="https://www.facebook.com/share/1EDeJjRtWU/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span>Facebook</span>
+            </a>
+            <a class="ig" href="https://www.instagram.com/mo7abdo_booda" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                <span>Instagram</span>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // ===== Translations =====
+        const I18N = {
+            ar: {
+                nav_home: "الرئيسية", nav_skills: "المهارات", nav_projects: "المشاريع", nav_tax: "الضريبة", nav_zakat: "الزكاة", nav_contact: "التواصل",
+                hero_welcome: "مرحبًا بك في موقعي", hero_hello: "أهلًا، أنا محمد",
+                hero_desc: "محاسب ومطور برمجيات، أجمع بين الدقة المالية والإبداع البرمجي في بناء الأنظمة والمواقع الاحترافية.",
+                btn_projects: "مشاريعي", btn_tools: "أدوات مجانية", btn_contact: "تواصل معي",
+                skills_title: "مهاراتي",
+                s1_t: "تطوير الويب", s1_d: "تطوير وبناء مواقع ويب عصرية ومتجاوبة بتصميمات نظيفة وواجهات احترافية.",
+                s2_t: "لغة C والمنطق البرمجي", s2_d: "خبرة في كتابة الأكواد والمنطق البرمجي السليم وحل المشكلات المعقدة بلغة C.",
+                s3_t: "النظم المالية", s3_d: "تحليل وتصميم النظم المحاسبية والمالية بدقة عالية تماشياً مع معايير المحاسبة.",
+                projects_title: "مشاريعي",
+                p1_d: "نظام محاسبي إلكتروني لإدارة الحسابات والمبيعات والمشتريات بدقة وسهولة تامة.",
+                p2_d: "تطبيق ويب تفاعلي لعرض البيانات والتحليلات الإحصائية للمستخدمين.",
+                p3_d: "موقع شخصي احترافي (Portfolio) بتصميم داكن وإضاءة صفراء جذابة لعرض الأعمال.",
+                tax_title: "حاسبة الضريبة", tax_amount: "المبلغ", tax_amount_ph: "مثلًا 1000",
+                tax_rate: "نسبة الضريبة %", tax_rate_ph: "مثلًا 14", tax_mode: "نوع الحساب",
+                tax_mode_add: "المبلغ قبل الضريبة (أضيف الضريبة)", tax_mode_extract: "المبلغ شامل الضريبة (استخرج الضريبة)",
+                tax_btn: "احسب", tax_err: "اكتب المبلغ والنسبة أولًا (أرقام موجبة).",
+                tax_base: "المبلغ قبل الضريبة", tax_val: "قيمة الضريبة", tax_total: "الإجمالي",
+                zakat_title: "حاسبة الزكاة", z_gold: "سعر جرام الذهب عيار 24 اليوم",
+                z_cash: "الكاش والمدخرات", z_goldsave: "الذهب والفضة المدخرة (بقيمتها)", z_trade: "بضاعة التجارة (بقيمتها)",
+                z_owedtome: "ديون لك (متوقع سدادها)", z_owedbyme: "ديون عليك (حل موعد سدادها)",
+                z_btn: "احسب الزكاة", z_err: "اكتب سعر جرام الذهب عيار 24 أولًا.",
+                z_nisab: "النصاب", z_net: "صافي مالك", z_due: "وجبت عليك الزكاة (إذا مر الحول)",
+                z_amount: "قيمة الزكاة", z_not: "لم يبلغ مالك النصاب، فلا زكاة عليك.",
+                z_note: "النصاب = قيمة 85 جرام ذهب عيار 24، والنسبة 2.5%، ويشترط مرور سنة هجرية كاملة على المال وهو فوق النصاب. الحاسبة للتقدير فقط، ولأي استفسار راجع دار الإفتاء أو أحد أهل العلم الموثوقين.",
+                contact_title: "تواصل معي", contact_desc: "يسعدني تواصلك معي لأي استفسار أو عمل مشترك!",
+                like_prompt: "أعجبك الموقع؟ اضغط على القلب", like_aria: "إعجاب"
+            },
+            en: {
+                nav_home: "Home", nav_skills: "Skills", nav_projects: "Projects", nav_tax: "Tax", nav_zakat: "Zakat", nav_contact: "Contact",
+                hero_welcome: "WELCOME TO MY PORTFOLIO", hero_hello: "Hello, I am Mohamed",
+                hero_desc: "Accountant and software developer, combining financial precision with creative coding to build professional systems and websites.",
+                btn_projects: "My Projects", btn_tools: "Free Tools", btn_contact: "Contact Me",
+                skills_title: "My Skills",
+                s1_t: "Web Development", s1_d: "Building modern, responsive websites with clean designs and professional interfaces.",
+                s2_t: "C & Logic Programming", s2_d: "Experience writing code with sound logic and solving complex problems in C.",
+                s3_t: "Financial Systems", s3_d: "Analyzing and designing accounting and financial systems with high accuracy, in line with accounting standards.",
+                projects_title: "My Projects",
+                p1_d: "An electronic accounting system for managing accounts, sales, and purchases accurately and easily.",
+                p2_d: "An interactive web app that displays data and statistical analytics for users.",
+                p3_d: "A professional personal portfolio with a dark design and an eye-catching yellow glow to showcase work.",
+                tax_title: "Tax Calculator", tax_amount: "Amount", tax_amount_ph: "e.g. 1000",
+                tax_rate: "Tax rate %", tax_rate_ph: "e.g. 14", tax_mode: "Calculation type",
+                tax_mode_add: "Amount before tax (add tax)", tax_mode_extract: "Amount includes tax (extract tax)",
+                tax_btn: "Calculate", tax_err: "Enter the amount and the rate first (positive numbers).",
+                tax_base: "Amount before tax", tax_val: "Tax amount", tax_total: "Total",
+                zakat_title: "Zakat Calculator", z_gold: "Price of 1 gram of 24k gold today",
+                z_cash: "Cash and savings", z_goldsave: "Saved gold and silver (by value)", z_trade: "Trade goods (by value)",
+                z_owedtome: "Debts owed to you (expected to be repaid)", z_owedbyme: "Debts you owe (already due)",
+                z_btn: "Calculate zakat", z_err: "Enter today's price of 1 gram of 24k gold first.",
+                z_nisab: "Nisab", z_net: "Your net wealth", z_due: "Zakat is due (if a full lunar year has passed)",
+                z_amount: "Zakat amount", z_not: "Your wealth has not reached the nisab, so no zakat is due.",
+                z_note: "Nisab = the value of 85 grams of 24k gold, and the rate is 2.5%. The wealth must also have stayed above the nisab for a full lunar (Hijri) year. This calculator is only an estimate; for any question, consult Dar al-Ifta or a trusted scholar.",
+                contact_title: "Contact Me", contact_desc: "I'd love to hear from you for any inquiry or collaboration!",
+                like_prompt: "Liked the site? Tap the heart", like_aria: "Like"
+            },
+            fr: {
+                nav_home: "Accueil", nav_skills: "Compétences", nav_projects: "Projets", nav_tax: "Taxe", nav_zakat: "Zakat", nav_contact: "Contact",
+                hero_welcome: "BIENVENUE SUR MON PORTFOLIO", hero_hello: "Bonjour, je suis Mohamed",
+                hero_desc: "Comptable et développeur logiciel, j'allie la précision financière à la créativité du code pour concevoir des systèmes et des sites web professionnels.",
+                btn_projects: "Mes projets", btn_tools: "Outils gratuits", btn_contact: "Me contacter",
+                skills_title: "Mes compétences",
+                s1_t: "Développement web", s1_d: "Création de sites web modernes et adaptatifs, au design épuré et aux interfaces professionnelles.",
+                s2_t: "Langage C et logique", s2_d: "Expérience en écriture de code, en logique de programmation et en résolution de problèmes complexes en langage C.",
+                s3_t: "Systèmes financiers", s3_d: "Analyse et conception de systèmes comptables et financiers avec une grande précision, conformément aux normes comptables.",
+                projects_title: "Mes projets",
+                p1_d: "Un système comptable électronique pour gérer les comptes, les ventes et les achats avec précision et simplicité.",
+                p2_d: "Une application web interactive qui affiche des données et des analyses statistiques pour les utilisateurs.",
+                p3_d: "Un portfolio personnel professionnel au design sombre et à l'éclat jaune accrocheur pour présenter mes travaux.",
+                tax_title: "Calculateur de taxe", tax_amount: "Montant", tax_amount_ph: "ex. 1000",
+                tax_rate: "Taux de taxe %", tax_rate_ph: "ex. 14", tax_mode: "Type de calcul",
+                tax_mode_add: "Montant hors taxe (ajouter la taxe)", tax_mode_extract: "Montant taxe comprise (extraire la taxe)",
+                tax_btn: "Calculer", tax_err: "Saisissez d'abord le montant et le taux (nombres positifs).",
+                tax_base: "Montant hors taxe", tax_val: "Montant de la taxe", tax_total: "Total",
+                zakat_title: "Calculateur de zakat", z_gold: "Prix d'un gramme d'or 24 carats aujourd'hui",
+                z_cash: "Espèces et économies", z_goldsave: "Or et argent thésaurisés (en valeur)", z_trade: "Marchandises de commerce (en valeur)",
+                z_owedtome: "Créances en votre faveur (remboursement attendu)", z_owedbyme: "Dettes que vous devez (déjà exigibles)",
+                z_btn: "Calculer la zakat", z_err: "Saisissez d'abord le prix d'un gramme d'or 24 carats.",
+                z_nisab: "Nisab", z_net: "Votre patrimoine net", z_due: "La zakat est due (si une année lunaire complète s'est écoulée)",
+                z_amount: "Montant de la zakat", z_not: "Votre patrimoine n'atteint pas le nisab, aucune zakat n'est due.",
+                z_note: "Le nisab correspond à la valeur de 85 grammes d'or 24 carats, et le taux est de 2,5 %. Le patrimoine doit aussi rester au-dessus du nisab pendant une année lunaire (hégirienne) complète. Ce calculateur n'est qu'une estimation ; pour toute question, consultez Dar al-Ifta ou un savant de confiance.",
+                contact_title: "Me contacter", contact_desc: "Je serais ravi d'échanger pour toute question ou collaboration !",
+                like_prompt: "Le site vous plaît ? Appuyez sur le cœur", like_aria: "J'aime"
+            },
+            es: {
+                nav_home: "Inicio", nav_skills: "Habilidades", nav_projects: "Proyectos", nav_tax: "Impuestos", nav_zakat: "Zakat", nav_contact: "Contacto",
+                hero_welcome: "BIENVENIDO A MI PORTAFOLIO", hero_hello: "Hola, soy Mohamed",
+                hero_desc: "Contador y desarrollador de software; combino la precisión financiera con la creatividad del código para construir sistemas y sitios web profesionales.",
+                btn_projects: "Mis proyectos", btn_tools: "Herramientas gratis", btn_contact: "Contáctame",
+                skills_title: "Mis habilidades",
+                s1_t: "Desarrollo web", s1_d: "Creación de sitios web modernos y adaptables, con diseños limpios e interfaces profesionales.",
+                s2_t: "Programación en C y lógica", s2_d: "Experiencia en escribir código, en lógica de programación y en resolver problemas complejos en C.",
+                s3_t: "Sistemas financieros", s3_d: "Análisis y diseño de sistemas contables y financieros con alta precisión, conforme a las normas contables.",
+                projects_title: "Mis proyectos",
+                p1_d: "Un sistema contable electrónico para gestionar cuentas, ventas y compras con precisión y facilidad.",
+                p2_d: "Una aplicación web interactiva que muestra datos y análisis estadísticos a los usuarios.",
+                p3_d: "Un portafolio personal profesional con diseño oscuro y un llamativo brillo amarillo para mostrar mi trabajo.",
+                tax_title: "Calculadora de impuestos", tax_amount: "Monto", tax_amount_ph: "p. ej. 1000",
+                tax_rate: "Tasa de impuesto %", tax_rate_ph: "p. ej. 14", tax_mode: "Tipo de cálculo",
+                tax_mode_add: "Monto sin impuesto (sumar impuesto)", tax_mode_extract: "Monto con impuesto incluido (extraer impuesto)",
+                tax_btn: "Calcular", tax_err: "Escribe primero el monto y la tasa (números positivos).",
+                tax_base: "Monto sin impuesto", tax_val: "Valor del impuesto", tax_total: "Total",
+                zakat_title: "Calculadora de zakat", z_gold: "Precio de 1 gramo de oro de 24 quilates hoy",
+                z_cash: "Efectivo y ahorros", z_goldsave: "Oro y plata ahorrados (por su valor)", z_trade: "Mercancías de comercio (por su valor)",
+                z_owedtome: "Deudas a tu favor (se espera su pago)", z_owedbyme: "Deudas que debes (ya vencidas)",
+                z_btn: "Calcular zakat", z_err: "Escribe primero el precio del gramo de oro de 24 quilates.",
+                z_nisab: "Nisab", z_net: "Tu patrimonio neto", z_due: "Corresponde zakat (si ha pasado un año lunar completo)",
+                z_amount: "Monto de la zakat", z_not: "Tu patrimonio no alcanza el nisab, por lo que no corresponde zakat.",
+                z_note: "El nisab es el valor de 85 gramos de oro de 24 quilates y la tasa es del 2,5 %. Además, el patrimonio debe mantenerse por encima del nisab durante un año lunar (hégira) completo. Esta calculadora es solo una estimación; ante cualquier duda, consulta a Dar al-Ifta o a un erudito de confianza.",
+                contact_title: "Contáctame", contact_desc: "¡Me encantará saber de ti para cualquier consulta o colaboración!",
+                like_prompt: "¿Te gustó el sitio? Toca el corazón", like_aria: "Me gusta"
+            }
+        };
+        const DIR = { ar: "rtl", en: "ltr", fr: "ltr", es: "ltr" };
+
+        // اللغة الافتراضية: غيّر 'ar' لأي لغة تانية (en / fr / es)
+        let lang = "ar";
+        try {
+            const saved = localStorage.getItem("lang");
+            if (saved && I18N[saved]) lang = saved;
+        } catch (e) {}
+
+        function t(key) {
+            return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
+        }
+
+        function applyLang() {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = DIR[lang];
+            document.querySelectorAll("[data-i18n]").forEach(function (el) {
+                el.textContent = t(el.getAttribute("data-i18n"));
+            });
+            document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
+                el.placeholder = t(el.getAttribute("data-i18n-ph"));
+            });
+            document.getElementById("likeBtn").setAttribute("aria-label", t("like_aria"));
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("zakatResult").innerHTML = "";
+        }
+
+        const langSelect = document.getElementById("lang");
+        langSelect.value = lang;
+        langSelect.addEventListener("change", function () {
+            lang = langSelect.value;
+            try { localStorage.setItem("lang", lang); } catch (e) {}
+            applyLang();
+        });
+
+        // ===== أزرار النافبار: بتنزّل للقسم وبتنوّر القسم الحالي =====
+        const SECTION_IDS = ["home", "skills", "projects", "tax", "zakat", "contact"];
+        const navLinks = document.querySelectorAll("nav ul a");
+        function spy() {
+            let current = "home";
+            const y = window.scrollY + window.innerHeight / 3;
+            SECTION_IDS.forEach(function (id) {
+                if (document.getElementById(id).offsetTop <= y) current = id;
+            });
+            navLinks.forEach(function (a) {
+                a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+            });
+        }
+        window.addEventListener("scroll", spy, { passive: true });
+        window.addEventListener("resize", spy);
+
+        // ===== Helpers =====
+        function fmt(n) {
+            return n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        function val(id) {
+            const v = parseFloat(document.getElementById(id).value);
+            return isNaN(v) || v < 0 ? 0 : v;
+        }
+
+        // ===== Tax calculator =====
+        function calcTax() {
+            const amount = parseFloat(document.getElementById("amount").value);
+            const rate = parseFloat(document.getElementById("rate").value);
+            const mode = document.getElementById("mode").value;
+            const out = document.getElementById("result");
+
+            if (isNaN(amount) || isNaN(rate) || amount < 0 || rate < 0) {
+                out.textContent = t("tax_err");
+                return;
+            }
+
+            let base, tax, total;
+            if (mode === "add") {
+                base = amount;
+                tax = amount * rate / 100;
+                total = base + tax;
+            } else {
+                total = amount;
+                base = amount / (1 + rate / 100);
+                tax = total - base;
+            }
+
+            out.innerHTML =
+                t("tax_base") + ": <b>" + fmt(base) + "</b><br>" +
+                t("tax_val") + ": <b class=\"ok\">" + fmt(tax) + "</b><br>" +
+                t("tax_total") + ": <b>" + fmt(total) + "</b>";
+        }
+        document.getElementById("calcBtn").addEventListener("click", calcTax);
+        document.querySelectorAll("#amount, #rate").forEach(function (el) {
+            el.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") calcTax();
+            });
+        });
+
+        // ===== Zakat calculator =====
+        function calcZakat() {
+            const out = document.getElementById("zakatResult");
+            const gold = val("goldPrice");
+            if (gold <= 0) {
+                out.textContent = t("z_err");
+                return;
+            }
+
+            const nisab = 85 * gold;
+            const net = val("zCash") + val("zGold") + val("zTrade") + val("zOwedToMe") - val("zOwedByMe");
+
+            let html =
+                t("z_nisab") + ": <b>" + fmt(nisab) + "</b><br>" +
+                t("z_net") + ": <b>" + fmt(net) + "</b><br>";
+
+            if (net >= nisab) {
+                html += "<span class=\"ok\">" + t("z_due") + "</span><br>" +
+                        t("z_amount") + ": <b class=\"ok\">" + fmt(net * 0.025) + "</b>";
+            } else {
+                html += t("z_not");
+            }
+            out.innerHTML = html;
+        }
+        document.getElementById("zakatBtn").addEventListener("click", calcZakat);
+
+        // ===== Like button =====
+        (function () {
+            // عدد البداية: غيّره لـ 0 لو عايز العداد يبدأ من الصفر الحقيقي
+            const BASE = 100;
+            const API = "https://api.counterapi.dev/v2/mohamed-abdo-portfolio/likes";
+
+            const btn = document.getElementById("likeBtn");
+            const heart = document.getElementById("likeHeart");
+            const countEl = document.getElementById("likeCount");
+            let liked = false;
+            try { liked = localStorage.getItem("liked") === "1"; } catch (e) {}
+
+            function show(n) { countEl.textContent = Number(n).toLocaleString("en-US"); }
+            function markLiked() { btn.classList.add("liked"); heart.textContent = "♥"; }
+            function readCount(d) {
+                const v = d && d.data ? (d.data.up_count !== undefined ? d.data.up_count : d.data) : d && d.count;
+                return Number(v) || 0;
+            }
+            if (liked) markLiked();
+
+            show(BASE);
+
+            fetch(API)
+                .then(function (r) { return r.json(); })
+                .then(function (d) { show(BASE + readCount(d)); })
+                .catch(function () {});
+
+            btn.addEventListener("click", function () {
+                if (liked) return;
+                liked = true;
+                markLiked();
+                try { localStorage.setItem("liked", "1"); } catch (e) {}
+                fetch(API + "/up")
+                    .then(function (r) { return r.json(); })
+                    .then(function (d) { show(BASE + readCount(d)); })
+                    .catch(function () { show(BASE + 1); });
+            });
+        })();
+
+        // ===== Start =====
+        applyLang();
+        spy();
+    </script>
 
 </body>
 </html>
